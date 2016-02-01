@@ -193,12 +193,12 @@ workspace_auto_back_and_forth yes
 # Custom keybindings
 bindsym $mod+shift+x exec i3lock
 bindsym $mod+shift+s exec sublime-text-2
-bindsym $mod+shift+i exec Firefox
+bindsym $mod+shift+i exec firefox
 
 # Startup Applications
 exec synclient MaxTapTime=0 # Prevent touchpad tapping
 exec_always feh --bg-scale /home/brandyn/Pictures/galaxy.jpg # Set wallpaper
-exec Firefox # Launch browser
+exec firefox # Launch browser
 exec sublime-text # Launch Editor
         
 # Pulse Audio controls
