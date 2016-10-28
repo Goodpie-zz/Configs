@@ -1,0 +1,21 @@
+execute pathogen#infect()
+syntax on
+
+set smarttab
+set number
+set tabstop=4
+set shiftwidth=4
+
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDTrimTrailingWhitespace = 1
+
+filetype plugin indent on
+
+set background=dark
+colorscheme solarized
+
+highlight NonText ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
+
