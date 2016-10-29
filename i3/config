@@ -57,6 +57,17 @@ bindsym $mod+shift+x exec $HOME/.xlock/lock.sh
 # Compton
 exec --no-startup-id compton -f
 
+#######################################################
+#                 Application Bindings                #
+#######################################################
+
+# Open Fireforx
+bindsym $mod+shift+f exec --no-startup-id firefox
+
+# Open Atom
+bindsym $mod+shift+a exec --no-startup-id atom
+
+# Open terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 #######################################################
@@ -185,6 +196,13 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace $workspace_10
 
+# Open workspace in specific window
+workspace "$workspace_03" output DP-5
+
+# Assign windows to workspaces
+assign [class="^Atom$"] → "$workspace_01"
+assign [class="^Gnome-terminal$"] → "$workspace_02"
+assign [class="^Firefox$"] → "$workspace_03"
 
 #######################################################
 #                        Gaps                         #
