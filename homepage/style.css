@@ -23,6 +23,11 @@ body
     background-color: #6C71C4 !important;
 }
 
+.green-bg
+{
+    background-color: #859900 !important;
+}
+
 #outer-container
 {
     position: relative;
@@ -36,11 +41,16 @@ body
     text-align: center;
 }
 
+#search-bar
+{
+    text-align: center;
+}
+
 #links-container
 {
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
 }
 
