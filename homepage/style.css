@@ -1,0 +1,73 @@
+body
+{
+    width: 100%;
+    height: 100%;
+    background-color: #073642;
+    color: #FDF6E3;
+    font-family: 'Bungee Hairline', cursive;
+    text-transform: lowercase;
+}
+
+.orange-bg
+{
+    background-color: #CB4B16 !important;
+}
+
+.blue-bg
+{
+    background-color: #268BD2 !important;
+}
+
+.purple-bg
+{
+    background-color: #6C71C4 !important;
+}
+
+#outer-container
+{
+    position: relative;
+}
+
+#title
+{
+    width: 100%;
+    margin: auto;
+    margin-top: 10%;
+    text-align: center;
+}
+
+#links-container
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.list-container
+{
+    list-style: none;
+    width: 200px;
+}
+
+.list-container li
+{
+    padding: 10px;
+    background-color: #93A1A1;
+}
+
+.list-container li a
+{
+    text-decoration: none;
+}
+
+.list-container li a:visited
+{
+    text-decoration: none;
+    color: black;
+}
+
+.list-container li a:hover
+{
+    color: #002B36;
+}
