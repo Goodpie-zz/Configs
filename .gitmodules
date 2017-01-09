@@ -1,0 +1,3 @@
+[submodule "homepage"]
+	path = homepage
+	url = https://github.com/Goodpie/homepage
