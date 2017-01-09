@@ -1,0 +1,243 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+background = #00000000
+background-alt = #00000000
+foreground = #dfdfdf
+foreground-alt = #55
+primary = #ffb52aFF
+secondary = #e60053
+alert = #bd2c40
+underline = #00000000
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+[bar/main]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
+offset-x = 0
+offset-y = 0
+
+;background = ${xrdb:color9}
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 0
+underline-size = 0
+
+border-bottom = 0
+border-bottom-color = #333
+
+spacing = 2
+padding-left = 1
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 0
+
+
+font-0 = Roboto:pixelsize=12;0
+font-1 = FontAwesome:pixelsize=12;-2
+;font-2 = unifont:size=6:heavy:fontformat=truetype;-2
+;font-3 = siji:pixelsize=10;-4
+
+; modules-left = xwindow
+modules-center = i3
+modules-right = 
+
+tray-position = right
+tray-padding = 8
+tray-transparent = true
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:64:...%
+label-underline = ${colors.underline}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-underline = ${colors.underline}
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+
+label-layout = %layout%
+
+label-indicator-padding = 2
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.underline}
+
+[module/i3]
+type = internal/i3
+
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-background = #e60053
+
+label-focused = 
+label-focused-foreground = #ffffff
+label-focused-underline = ${colors.underline}
+label-focused-padding = 2
+
+label-unfocused = 
+label-unfocused-padding = 2
+
+label-urgent = 
+label-urgent-foreground = #000000
+label-urgent-padding = 2
+
+[module/customVolume]
+interval = 0.5
+type = internal/volume
+scroll-up = pactl set-sink-volume 1 +1%
+scroll-down = pactl set-sink-volume 1 -1%
+click-left = urxvt -name float -e ncmpcpp &
+click-right = pavucontrol &
+format-volume-prefix = " "
+format-volume = <label-volume>
+format-volume-prefix-foreground = ${colors.foreground-alt}
+format-volume-underline = ${colors.underline}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.underline} 
+label = %percentage%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.underline}
+label = %percentage_used%
+
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+interval = 3.0
+
+format-connected-underline = ${colors.underline}
+format-disconnected-underline = ${colors.underline}
+
+label-connected = 
+label-disconnected = 
+label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = "%Y-%m-%d"
+
+time = "%H:%M"
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.underline}
+
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #ffb52a
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = ${colors.underline}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/powermenu]
+type = custom/menu
+
+label-open =  POWER
+label-open-foreground = ${colors.secondary}
+label-close =  CANCEL
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = REBOOT
+menu-0-0-exec = menu-open-1
+menu-0-1 = POWER OFF
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+; vim:ft=dosini
