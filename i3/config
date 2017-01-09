@@ -7,28 +7,34 @@
 set $mod Mod4
 
 # Workspaces
-set $workspace_01                Editing
-set $workspace_02                Terminal
-set $workspace_03                Firefox
-set $workspace_10               ♪ Music
+set $workspace_01               1:
+set $workspace_02               2:
+set $workspace_03               3:
+set $workspace_04               4:
+set $workspace_05               5:
+set $workspace_06               6:
+set $workspace_07               7:
+set $workspace_08               8:8
+set $workspace_09               9:9
+set $workspace_10               10:♪
 
 # Colours
-set $bg_active                  #073642
-set $bg_inactive                #002b36
-set bg_urgent                   #CB4B16
+set $bg_active                  #FFA700
+set $bg_inactive                #586270
+set bg_urgent                   #C48D62
 
-set $border_active              $bg_active
+set $border_active              #FFA700
 set $border_inactive            $bg_inactive
-set $border_urgent              $bg_urgent
+set $border_urgent              $B27B78
 
-set $text_active                #FDF6E3
-set $text_inactive              #586E75
+set $text_active                #FDFEFF
+set $text_inactive              #212121
 
-set $bg_active_workspace        #073642
-set $bg_inactive_workspace      #073642AA
+set $bg_active_workspace        #383E47
+set $bg_inactive_workspace      #C48D62
 
-set $bg_bar                     #073642AA
-set $indicator                  #00ff00
+set $bg_bar                     #383E47AA
+set $indicator                  #282C33
 
 # Wallpaper
 set $wall_dir                   ~/.wallpaper.jpg
@@ -36,7 +42,7 @@ set $wall_type                  --bg-fill
 set $wall_prog                  feh
 
 # Font
-set $font_name                  System San Francisco Display
+set $font_name                  pango:Roboto 14px
 set $font_size_sm               8
 set $font_size_lg               18
 
@@ -49,13 +55,15 @@ set $oug                        50
 #######################################################
 
 # Rofi - Working on 1920x1080 display
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 450 -opacity "85" -bw 0 -bc "$bg_active" -bg "$bg_active" -fg "$text_active" -hlbg "$bg_active" -hlfg "#9575cd" -font "System San Francisco Display 18"
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg_active" -bg "$bg_active" -fg "$text_active" -hlbg "$bg_active" -hlfg "#9575cd" -font "System San Francisco Display 18"
 
-# Lock Screen
+# Lock Scr300
 bindsym $mod+shift+x exec $HOME/.xlock/lock.sh
 
 # Compton
 exec --no-startup-id compton -f
+
+for_window [class="^.*"] border pixel 4
 
 #######################################################
 #                 Application Bindings                #
@@ -92,13 +100,16 @@ focus_follows_mouse no
 exec_always --no-startup-id $wall_prog $wall_type $wall_dir
 
 # Set Font
-font pango:System San Francisco Display 8
-
-# thin borders
-hide_edge_borders both
+font pango:Roboto Regular 12px
 
 # Remove title and border
 new_window 1pixel
+
+
+exec synclient MaxTapTime=0 # Prevent touchpad tapping
+
+# Default Gaps
+gaps outer 10
 
 #######################################################
 #                    Media Hotkeys                    #
@@ -111,9 +122,9 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previousouse+$mod to drag floating windows to their wanted position
 
 # Pulse audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 #######################################################
 #                    Focus/Stacking                   #
@@ -150,7 +161,6 @@ bindsym $mod+space focus mode_toggle
 
 bindsym $mod+a focus parent
 
-
 mode "Resize" {
 	 bindsym h resize shrink width 1 px or 1 ppt
  	 bindsym j resize grow height 1 px or 1 ppt
@@ -176,32 +186,32 @@ bindsym $mod+r mode "Resize"
 bindsym $mod+1 workspace $workspace_01
 bindsym $mod+2 workspace $workspace_02
 bindsym $mod+3 workspace $workspace_03
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+4 workspace $workspace_04
+bindsym $mod+5 workspace $workspace_05
+bindsym $mod+6 workspace $workspace_06
+bindsym $mod+7 workspace $workspace_07
+bindsym $mod+8 workspace $workspace_08
+bindsym $mod+9 workspace $workspace_09
 bindsym $mod+0 workspace $workspace_10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace_01
 bindsym $mod+Shift+2 move container to workspace $workspace_02
 bindsym $mod+Shift+3 move container to workspace $workspace_03
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+4 move container to workspace $workspace_04
+bindsym $mod+Shift+5 move container to workspace $workspace_05
+bindsym $mod+Shift+6 move container to workspace $workspace_06
+bindsym $mod+Shift+7 move container to workspace $workspace_07
+bindsym $mod+Shift+8 move container to workspace $workspace_08
+bindsym $mod+Shift+9 move container to workspace $workspace_09
 bindsym $mod+Shift+0 move container to workspace $workspace_10
 
 # Open workspace in specific window
 workspace "$workspace_03" output DP-5
 
 # Assign windows to workspaces
-assign [class="^Atom$"] → "$workspace_01"
-assign [class="^Gnome-terminal$"] → "$workspace_02"
+assign [class="^Atom$"] → "$workspace_02"
+assign [class="^Gnome-terminal$"] → "$workspace_01"
 assign [class="^Firefox$"] → "$workspace_03"
 
 #######################################################
@@ -209,10 +219,10 @@ assign [class="^Firefox$"] → "$workspace_03"
 #######################################################
 
 # window colors         border              background          text                 indicator
-client.focused          $border_active      $bg_active          $text_active         $indicator
-client.unfocused        $border_inactive    $bg_inactive        $text_inactive       $indicator
-client.focused_inactive $border_inactive    $bg_inactive        $text_inactive       $indicator
-client.urgent           $border_urgent      $bg_urgen           $text-color          $indicator
+client.focused          $border_active      $bg_active          $text_active         $border_active
+client.unfocused        $border_inactive    $bg_inactive        $text_inactive       $border_inactive
+client.focused_inactive $border_inactive    $bg_inactive        $text_inactive       $border_inactive
+client.urgent           $border_urgent      $bg_urgen           $text-color          $border_urgen
 
 
 mode "Gaps" {
@@ -237,16 +247,16 @@ bindsym $mod+g mode "Gaps"
 
  bar {
 
- 		colors {
-            background          $bg_bar
- 			focused_workspace	$bg_active_workspace      $bg_active_workspace    $text_active    #00FF00
-            inactive_workspace  $bg_inactive_workspace    $bg_inactive_workspace  $text_inactive
-            active_workspace    $bg_inactive_workspace    $bg_inactive_workspace  $text_inactive
- 		}
+ 	colors {
+        background          $bg_bar
+		focused_workspace   $bg_active            $bg_active_workspace    $text_active    
+        inactive_workspace  $bg_inactive_workspace    $bg_inactive_workspace  $text_inactive 
+        active_workspace    $bg_inactive_workspace    $bg_inactive_workspace  $text_inactive    
+ 	}
 
- 		i3bar_command i3bar -t
-        status_command i3status -c ~/.config/i3status/i3status.conf
- 	 	modifier Mod1
-        height 25
-        position top
+    i3bar_command $HOME/.config/polybar/launch.sh
+ 	modifier Mod1
+    position top
+    strip_workspace_numbers yes
+    separator_symbol ">>"
 }
