@@ -1,21 +1,23 @@
+" Pathogen setup
 execute pathogen#infect()
 syntax on
-
-set smarttab
-set number
-set tabstop=4
-set shiftwidth=4
-
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
-let g:NERDDefaultAlign = 'left'
-let g:NERDTrimTrailingWhitespace = 1
-
 filetype plugin indent on
 
-set background=dark
-colorscheme solarized
+" Indent options
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0 expandtab
+set autoindent
+set smarttab
+set number
 
+" Vim Airline
+set laststatus=2
+set ttimeoutlen=50 
+
+" Color schemes
+" Using Molokai with default terminal background
+colorscheme molokai
 highlight NonText ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
-
+highlight LineNr ctermfg=white ctermbg=NONE
