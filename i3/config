@@ -15,15 +15,15 @@ set $workspace_05               5:
 set $workspace_06               6:
 set $workspace_07               7:
 set $workspace_08               8:8
-set $workspace_09               9:9
+set $workspace_09               9:
 set $workspace_10               10:♪
 
 # Colours
-set $bg_active                  #FFA700
-set $bg_inactive                #586270
-set bg_urgent                   #C48D62
+set $bg_active                  #FFFFFF
+set $bg_inactive                #AAAAAA
+set bg_urgent                   #C48D62EE
 
-set $border_active              #FFA700
+set $border_active              #737373
 set $border_inactive            $bg_inactive
 set $border_urgent              $B27B78
 
@@ -35,6 +35,10 @@ set $bg_inactive_workspace      #C48D62
 
 set $bg_bar                     #383E47AA
 set $indicator                  #282C33
+
+set $rofi_bg                    #EDEDED
+set $rofi_fg                    #000000
+set $rofi_selected              #FFFFFF
 
 # Wallpaper
 set $wall_dir                   ~/.wallpaper.jpg
@@ -55,15 +59,17 @@ set $oug                        50
 #######################################################
 
 # Rofi - Working on 1920x1080 display
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg_active" -bg "$bg_active" -fg "$text_active" -hlbg "$bg_active" -hlfg "#9575cd" -font "System San Francisco Display 18"
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg_active" -bg "$rofi_bg" -fg "$rofi_fg" -hlbg "$rofi_selected" -hlfg "$rofi_fg" -font "System San Francisco Display 18"
 
 # Lock Scr300
-bindsym $mod+shift+x exec $HOME/.xlock/lock.sh
+bindsym $mod+shift+x exec $HOME/.lock.sh
 
 # Compton
 exec --no-startup-id compton -f
 
 for_window [class="^.*"] border pixel 4
+
+for_window [class="TeamViewer"] floating enable
 
 #######################################################
 #                 Application Bindings                #
@@ -76,7 +82,7 @@ bindsym $mod+shift+f exec --no-startup-id firefox
 bindsym $mod+shift+a exec --no-startup-id atom
 
 # Open terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec terminator
 
 #######################################################
 #                    i3 Keybindings                   #
@@ -211,7 +217,7 @@ workspace "$workspace_03" output DP-5
 
 # Assign windows to workspaces
 assign [class="^Atom$"] → "$workspace_02"
-assign [class="^Gnome-terminal$"] → "$workspace_01"
+assign [class="^Terminator$"] → "$workspace_01"
 assign [class="^Firefox$"] → "$workspace_03"
 
 #######################################################
@@ -249,9 +255,9 @@ bindsym $mod+g mode "Gaps"
 
  	colors {
         background          $bg_bar
-		focused_workspace   $bg_active            $bg_active_workspace    $text_active    
-        inactive_workspace  $bg_inactive_workspace    $bg_inactive_workspace  $text_inactive 
-        active_workspace    $bg_inactive_workspace    $bg_inactive_workspace  $text_inactive    
+		focused_workspace   $bg_active            $bg_active_workspace    $text_active
+        inactive_workspace  $bg_inactive_workspace    $bg_inactive_workspace  $text_inactive
+        active_workspace    $bg_inactive_workspace    $bg_inactive_workspace  $text_inactive
  	}
 
     i3bar_command $HOME/.config/polybar/launch.sh
