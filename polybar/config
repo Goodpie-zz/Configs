@@ -11,8 +11,8 @@
 padding = 2
 
 [colors]
-background = #000000AA
-background-alt = #000000AA
+background = #0099CC
+background-alt = #AD7FA8
 background-alt-2 = #801515
 foreground = #FFFFFF
 foreground-alt = #000000
@@ -20,15 +20,22 @@ transparent = #00000000
 primary = #FFFFFF
 secondary = #000000
 alert = #FFFFFF
-underline = #00000AA
+underline = #16C2FB
 
 [global/wm]
 margin-top = 5
 margin-bottom = 5
 
+;; =====================================
+;;
+;; Main bar intended for main monitor
+;;
+;; =====================================
+
 [bar/main]
+monitor=HDMI-0
 width = 100%
-height = 24
+height = 26
 offset-x = 0
 offset-y = 0
 
@@ -36,25 +43,24 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 overline-size = 0
-underline-size = 0
+underline-size = 3
 
-border-bottom = 2
+border-bottom = 0
 border-bottom-color = ${colors.underline}
 
 spacing = 0
 padding-left = 2
 padding-right = 2
-module-margin-left = 0
-module-margin-right = 0
+module-margin-left = 2
+module-margin-right = 2
 
-font-0 = Roboto:pixelsize=12;0
-font-1 = FontAwesome:pixelsize=12;-2
+font-0 = Pixeled:pixelsize=6;0
+font-1 = FontAwesome:pixelsize=9;0
 
-modules-left = battery volume
-modules-center = i3
-modules-right = memory wifi date time
+modules-left = i3
+modules-center = gpmdp
+modules-right = weather time
 
-tray-position = right
 tray-padding = 8
 tray-transparent = true
 
@@ -63,137 +69,145 @@ wm-restack = i3
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
+;; =====================================
+;;
+;; Second bar intended for second monitor
+;;
+;; =====================================
+
+[bar/secondary]
+monitor=DP-1
+width = 100%
+height = 26
+offset-x = 0
+offset-y = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 0
+underline-size = 3
+
+border-bottom = 0
+border-bottom-color = ${colors.underline}
+
+spacing = 0
+padding-left = 2
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = Pixeled:pixelsize=6;0
+font-1 = FontAwesome:pixelsize=9;0
+
+modules-left = i3
+modules-center =
+modules-right = memory cpu time
+
+tray-padding = 8
+tray-transparent = true
+
+wm-restack = i3
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+;; =====================================
+;;
+;; i3 Module
+;;
+;; =====================================
+
 [module/i3]
 type = internal/i3
 
 strip-wsnumbers = true
 index-sort = true
+enable-scroll = true
 enable-click = true
+pin-workspaces = true
 
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-9 = 9;
-ws-icon-default = m
+format = <label-state> <label-mode>
 
-label-mode = %mode%
-label-mode-padding = 1
+label-mode = %index%
+label-mode-padding = 2
 label-mode-background = #e60053
 
 label-focused = %name%
-label-focused-foreground = #A3A3A3
-label-focused-background = ${colors.foreground}
 label-focused-padding = 2
+label-focused-underline = ${colors.underline}
 
 label-unfocused = %name%
 label-unfocused-padding = 2
 
+label-visible = %name%
+label-visible-padding = 2
+
 label-urgent = %name%
-label-urgent-foreground = #000000
 label-urgent-padding = 2
 
-[module/volume]
-interval = 0.5
-type = internal/volume
-
-click-left = urxvt -name float -e ncmpcpp &
-click-right = pavucontrol &
-
-format-volume-padding = 5
-format-volume-margin = 0
-format-volume-background = ${colors.background-alt}
-
-scroll-up = pactl set-sink-volume 1 +1%
-scroll-down = pactl set-sink-volume 1 -1%
-
-bar-volume-width = 10
-
-bar-volume-empty = 
-bar-volume-fill = 
-bar-volume-indicator = 
-
-label-volume = "VOL: %percentage%"
-format-volume = <label-volume> <bar-volume>
-
-[module/memory]
-type = internal/memory
-interval = 2
-label = MEM: %percentage_used%
-
-format-background = ${colors.background-alt}
-format-padding = 5
-format-margin = 1
-
-[module/date]
-type = internal/date
-date = DATE: %d-%m-%Y
-interval = 5
-
-format-background = ${colors.background-alt}
-format-padding = ${variables.padding}
-format-margin = 1
+;; =====================================
+;;
+;; Time Module
+;;
+;; =====================================
 
 [module/time]
 type = internal/date
-date = TIME: %H:%M
+date = %a, %I:%M %p
 interval = 5
 
-format-background = ${colors.background-alt}
-format-padding = ${variables.padding}
 format-margin = 1
 
-[module/wifi]
-type = internal/network
-interface = wlp4s0
-interval = 3.0
-;udspeed-minwidth = 0
+label-underline = ${colors.underline}
 
-format-disconnected-padding = ${variables.padding}
-format-disconnected-margin = 2
-format-disconnected-background = ${colors.background-alt}
+;; =====================================
+;;
+;; CPU Module
+;;
+;; =====================================
 
-format-connected-padding = ${variables.padding}
-format-connected-margin = 1
-format-connected-background = ${colors.background-alt}
+[module/cpu]
+type = internal/cpu
 
-format-connected = <label-connected>
-label-connected = DOWN: %downspeed%  UP: %upspeed%
-label-disconnected = Disconnected
+label = CPU: %percentage%%
+label-underline = ${colors.underline}
 
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = ADP1
-full-at = 98
+interval = 1
 
-format-charging-padding = ${variables.padding}
-format-charging-background = ${colors.background-alt}
-format-charging-margin = 1
+;; =====================================
+;;
+;; Memory Module
+;;
+;; =====================================
 
-format-discharging-padding = ${variables.padding}
-format-discharging-background = ${colors.background-alt}
-format-discharging-margin = 1
+[module/memory]
+type = internal/memory
+label = MEM: %percentage_used%%
+label-underline = ${colors.underline}
+interval = 1
 
-format-full-padding = ${variables.padding}
-format-full-background = ${colors.background-alt}
-format-full-margin = 1
+;; =====================================
+;;
+;; Weather Module (Custom Script)
+;;
+;; =====================================
 
-bar-capacity-format = %fill%%indicator%%empty%
-bar-capacity-foreground = #FFF
-bar-capacity-width = 10
+[module/weather]
+type = custom/script
+interval = 60
+format = <label>
+label-underline = ${colors.underline}
+exec = python3 ~/.config/polybar/weather.py
 
-; Not entirely sure what these are for
-bar-capacity-empty = 
-bar-capacity-fill = 
-bar-capacity-indicator = 
+;; =====================================
+;;
+;; Google Play Music Desktop Player Module (Custom Script)
+;;
+;; =====================================
 
-; Use + or - to indicate charging / discharging
-label-charging = "BAT: %percentage%"
-label-discharging = "BAT(-): %percentage%"
-label-full = "BAT: %percentage%"
-
-format-charging = <label-charging> <bar-capacity>
-format-discharging = <label-discharging> <bar-capacity>
-format-full = <label-full> <bar-capacity>
+[module/gpmdp]
+type = custom/script
+interval = 2
+label-underline = ${colors.underline}
+exec = python3 ~/.config/polybar/gpmdp.py
