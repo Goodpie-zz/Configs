@@ -2,6 +2,6 @@
 
 Intended as a personal backup of all dotfiles
 
-![Empty](http://imgur.com/GzDjMus)
+![Empty](http://imgur.com/GzDjMus.jpg)
 
-![Terminal](ttp://imgur.com/hMDjf0P)
+![Terminal](http://imgur.com/hMDjf0P.jpg)
