@@ -7,23 +7,23 @@
 set $mod Mod4
 
 # Workspaces
-set $workspace_01               1:
-set $workspace_02               2:
-set $workspace_03               3:
-set $workspace_04               4:
-set $workspace_05               5:
-set $workspace_06               6:
-set $workspace_07               7:
+set $workspace_01               1:1
+set $workspace_02               2:2
+set $workspace_03               3:3
+set $workspace_04               4:4
+set $workspace_05               5:5
+set $workspace_06               6:6
+set $workspace_07               7:7
 set $workspace_08               8:8
-set $workspace_09               9:
-set $workspace_10               10:♪
+set $workspace_09               9:9
+set $workspace_10               10:10
 
 # Colours
-set $bg_active                  #FFFFFF
-set $bg_inactive                #AAAAAA
-set bg_urgent                   #C48D62EE
+set $bg_active                  #16C2FB
+set $bg_inactive                #007095
+set bg_urgent                   #FF2800
 
-set $border_active              #737373
+set $border_active              #16C2FB
 set $border_inactive            $bg_inactive
 set $border_urgent              $B27B78
 
@@ -34,14 +34,14 @@ set $bg_active_workspace        #383E47
 set $bg_inactive_workspace      #C48D62
 
 set $bg_bar                     #383E47AA
-set $indicator                  #282C33
+set $indicator                  #03C0FF
 
-set $rofi_bg                    #EDEDED
+set $rofi_bg                    #007095
 set $rofi_fg                    #000000
 set $rofi_selected              #FFFFFF
 
 # Wallpaper
-set $wall_dir                   ~/.wallpaper.jpg
+set $wall_dir                   ~/wallpaper.jpg
 set $wall_type                  --bg-fill
 set $wall_prog                  feh
 
@@ -59,7 +59,7 @@ set $oug                        50
 #######################################################
 
 # Rofi - Working on 1920x1080 display
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg_active" -bg "$rofi_bg" -fg "$rofi_fg" -hlbg "$rofi_selected" -hlfg "$rofi_fg" -font "System San Francisco Display 18"
+bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -opacity "50" -bw 0 -bc "$bg_active" -bg "$rofi_bg" -fg "$rofi_fg" -hlbg "$rofi_selected" -hlfg "$rofi_fg" -font "System San Francisco Display 18"
 
 # Lock Scr300
 bindsym $mod+shift+x exec $HOME/.lock.sh
@@ -94,6 +94,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+c exec i3-msg sticky toggle
+
+bindsym $mod+Shift+Print exec gnome-screenshot -i
 
 #######################################################
 #                         Misc                        #
@@ -266,3 +268,4 @@ bindsym $mod+g mode "Gaps"
     strip_workspace_numbers yes
     separator_symbol ">>"
 }
+
